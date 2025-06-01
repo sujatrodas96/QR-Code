@@ -67,12 +67,21 @@ app.post('/generate', (req, res) => {
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
         />
+        <style>
+          .blurred-url {
+            filter: blur(5px);
+            user-select: none;
+            pointer-events: none;
+          }
+        </style>
       </head>
       <body class="bg-light">
         <div class="container mt-5 text-center">
           <div class="card shadow-sm p-4">
             <h2 class="mb-3">QR Code Generated</h2>
-            <p class="text-muted">For: <strong>${url}</strong></p>
+            <p class="text-muted">
+               <strong style="filter: blur(4px); user-select: none;">${url}</strong>
+            </p>
             <div class="d-flex justify-content-center my-4">
               <img src="data:image/png;base64,${base64Image}" class="img-fluid border p-2" style="max-width: 300px;" />
             </div>
