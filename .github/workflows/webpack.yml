@@ -7,19 +7,29 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-node:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Show Node.js version
-        run: node --version
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-      - name: Show npm version
-        run: npm --version
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Install Grunt
-        run: npm install grunt
+      # Optional: Run tests
+      # - name: Run tests
+      #   run: npm test
+
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel
+          vercel --prod \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --project ${{ secrets.VERCEL_PROJECT_ID }} \
+            --org ${{ secrets.VERCEL_ORG_ID }}
