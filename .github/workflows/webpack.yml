@@ -9,11 +9,20 @@ on:
 jobs:
   build-node:
     runs-on: windows-latest
-    container: node:20
     steps:
-     -- run: node --version
-     -- run: npm --version
-     -- uses: actions/checkout@v4
-     -- run: npm install
-     -- run: node index.js
-     -- run: npm install grunt
+      - uses: actions/checkout@v4
+      
+      - name: Show Node.js version
+        run: node --version
+
+      - name: Show npm version
+        run: npm --version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run index.js
+        run: node index.js
+
+      - name: Install Grunt
+        run: npm install grunt
