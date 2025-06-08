@@ -27,9 +27,9 @@ jobs:
       #   run: npm test
 
       - name: Deploy to Vercel
-  run: |
-    npm install -g vercel
-    vercel --prod --debug \
-      --token ${{ secrets.VERCEL_TOKEN }} \
-      --project ${{ secrets.VERCEL_PROJECT_ID }} \
-      --org ${{ secrets.VERCEL_ORG_ID }}
+        run: |
+          npm install -g vercel
+          vercel --prod --debug \
+            --token ${{ secrets.VERCEL_TOKEN }} \
+            --project ${{ secrets.VERCEL_PROJECT_ID }} \
+            --org ${{ secrets.VERCEL_ORG_ID }}
